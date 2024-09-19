@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace HDInnovations\LaravelPolarApi\Clients;
 
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiValidationException;
+
 class ProductClient extends BaseClient
 {
     /**
      * Get products from the Polar API.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
+     * @throws PolarApiValidationException
      */
     final public function getProducts(
         ?string $organizationId = null,
@@ -21,6 +26,10 @@ class ProductClient extends BaseClient
         int $page = 1,
         int $limit = 10
     ): array {
+        if ($organizationId === null) {
+            throw new PolarApiValidationException('The organization_id parameter is required.');
+        }
+
         $params = array_filter([
             'organization_id' => $organizationId,
             'is_archived'     => $isArchived,
