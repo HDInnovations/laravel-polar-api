@@ -1,0 +1,91 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\ArticleClient\\:\\:getArticleById\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/ArticleClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\ArticleClient\\:\\:getArticleReceiversCount\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/ArticleClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\ArticleClient\\:\\:getArticles\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/ArticleClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\BaseClient\\:\\:request\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/BaseClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\BaseClient\\:\\:request\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/BaseClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\ProductClient\\:\\:getProductById\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/ProductClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\ProductClient\\:\\:getProducts\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/ProductClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Clients\\\\SubscriptionClient\\:\\:getSubscriptions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Clients/SubscriptionClient.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiNotFoundException\\:\\:__construct\\(\\) has parameter \\$code with no type specified\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiNotFoundException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiNotFoundException\\:\\:__construct\\(\\) has parameter \\$message with no type specified\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiNotFoundException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiNotFoundException\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiNotFoundException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:__construct\\(\\) has parameter \\$code with no type specified\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:__construct\\(\\) has parameter \\$details with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:__construct\\(\\) has parameter \\$message with no type specified\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:getDetails\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Property HDInnovations\\\\LaravelPolarApi\\\\Exceptions\\\\PolarApiUnprocessableEntityException\\:\\:\\$details type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Exceptions/PolarApiUnprocessableEntityException.php
+
+		-
+			message: "#^Method HDInnovations\\\\LaravelPolarApi\\\\Providers\\\\PolarApiServiceProvider\\:\\:boot\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Providers/PolarApiServiceProvider.php
