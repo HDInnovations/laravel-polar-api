@@ -71,7 +71,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "HDInnovations\\LaravelPolarApi\\Proviers\\PolarApiServiceProvider"
+                "HDInnovations\\LaravelPolarApi\\Providers\\PolarApiServiceProvider"
             ],
             "aliases": {
                 "PolarApi": "HDInnovations\\LaravelPolarApi\\Facades\\PolarApiFacade"
