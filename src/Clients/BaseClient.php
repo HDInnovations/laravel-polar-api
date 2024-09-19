@@ -21,12 +21,15 @@ class BaseClient
     }
 
     /**
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function request(string $method, string $endpoint, array $params = []): array
     {
-        $response = Http::withToken($this->token)->$method($this->baseUrl . $endpoint, $params);
+        $response = Http::withHeaders([
+            'Accept'        => 'application/json',
+            'Authorization' => 'Bearer '.$this->token,
+        ])->$method($this->baseUrl.$endpoint, $params);
 
         if ($response->status() === 422) {
             throw new PolarApiUnprocessableEntityException($response->json('detail'));

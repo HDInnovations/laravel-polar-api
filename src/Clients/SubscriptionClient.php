@@ -22,11 +22,11 @@ class SubscriptionClient extends BaseClient
     ): array {
         $params = array_filter([
             'organization_id' => $organizationId,
-            'product_id' => $productId,
-            'type' => $type,
-            'active' => $active,
-            'page' => $page,
-            'limit' => $limit,
+            'product_id'      => $productId,
+            'type'            => $type,
+            'active'          => $active,
+            'page'            => $page,
+            'limit'           => $limit,
         ]);
 
         return $this->request('get', '/subscriptions', $params);

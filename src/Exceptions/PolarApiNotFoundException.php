@@ -32,7 +32,7 @@ class PolarApiNotFoundException extends Exception
     final public function toArray(): array
     {
         return [
-            'type' => $this->type,
+            'type'   => $this->type,
             'detail' => $this->detail,
         ];
     }

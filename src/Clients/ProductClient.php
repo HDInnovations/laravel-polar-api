@@ -23,12 +23,12 @@ class ProductClient extends BaseClient
     ): array {
         $params = array_filter([
             'organization_id' => $organizationId,
-            'is_archived' => $isArchived,
-            'is_recurring' => $isRecurring,
-            'benefit_id' => $benefitId,
-            'type' => $type,
-            'page' => $page,
-            'limit' => $limit,
+            'is_archived'     => $isArchived,
+            'is_recurring'    => $isRecurring,
+            'benefit_id'      => $benefitId,
+            'type'            => $type,
+            'page'            => $page,
+            'limit'           => $limit,
         ]);
 
         return $this->request('get', '/products', $params);

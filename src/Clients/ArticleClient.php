@@ -23,12 +23,12 @@ class ArticleClient extends BaseClient
     ): array {
         $params = array_filter([
             'organization_id' => $organizationId,
-            'visibility' => $visibility,
-            'is_subscribed' => $isSubscribed,
-            'is_published' => $isPublished,
-            'is_pinned' => $isPinned,
-            'page' => $page,
-            'limit' => $limit,
+            'visibility'      => $visibility,
+            'is_subscribed'   => $isSubscribed,
+            'is_published'    => $isPublished,
+            'is_pinned'       => $isPinned,
+            'page'            => $page,
+            'limit'           => $limit,
         ]);
 
         return $this->request('get', '/articles', $params);
@@ -56,8 +56,8 @@ class ArticleClient extends BaseClient
         $response = $this->request('get', "/articles/{$articleId}/receivers");
 
         return [
-            'free_subscribers' => $response['free_subscribers'] ?? 0,
-            'premium_subscribers' => $response['premium_subscribers'] ?? 0,
+            'free_subscribers'     => $response['free_subscribers'] ?? 0,
+            'premium_subscribers'  => $response['premium_subscribers'] ?? 0,
             'organization_members' => $response['organization_members'] ?? 0,
         ];
     }
