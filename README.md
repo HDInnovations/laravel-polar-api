@@ -1,6 +1,6 @@
-# Laravel Polar API
+# <img src="https://i.postimg.cc/wBmfXGXN/logomark-blue.png" alt="Polar Branding" width="25" height="25"> Laravel Polar API
 
-**Laravel Polar API** is a Laravel package that provides an API wrapper for the POLAR API. This package simplifies the process of interacting with the POLAR API by providing a set of convenient methods and classes.
+**Laravel Polar API** is a Laravel package that provides an API wrapper for [polar.sh](Ihttps://polar.sh) API. This package simplifies the process of interacting with the Polar API by providing a set of convenient methods and classes.
 
 ## Note
 
