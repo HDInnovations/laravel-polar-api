@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 class BaseClient
 {
-    public function __construct(private readonly string $baseUrl, private readonly string $token)
-    {
-    }
+    public function __construct(private readonly string $baseUrl, private readonly string $token) {}
 
     /**
      * @throws PolarApiUnprocessableEntityException

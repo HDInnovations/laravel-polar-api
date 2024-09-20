@@ -20,11 +20,4 @@ class PolarApiUnprocessableEntityException extends Exception
     {
         return $this->details;
     }
-
-    final public function toArray(): array
-    {
-        return [
-            'detail' => $this->details,
-        ];
-    }
 }
