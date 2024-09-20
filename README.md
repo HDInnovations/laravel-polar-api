@@ -1,5 +1,12 @@
 # <img src="https://i.postimg.cc/wBmfXGXN/logomark-blue.png" alt="Polar Branding" width="25" height="25"> Laravel Polar API
 
+[![Larastan Static Analysis](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/larastan.yml/badge.svg)](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/larastan.yml)
+[![Laravel Pint](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/pint.yml/badge.svg)](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/pint.yml)
+[![Pest Testing Suite](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/pest.yml/badge.svg)](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/pest.yml)
+[![Pest Type Coverage](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/type-coverage.yml/badge.svg)](https://github.com/HDInnovations/laravel-polar-api/actions/workflows/type-coverage.yml)
+[![Packagist Version](https://img.shields.io/packagist/v/hdinnovations/laravel-polar-api)](https://packagist.org/packages/hdinnovations/laravel-polar-api)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/hdinnovations/laravel-polar-api)](https://packagist.org/packages/hdinnovations/laravel-polar-api)
+
 **Laravel Polar API** is a Laravel package that provides an API wrapper for [polar.sh](Ihttps://polar.sh) API. This package simplifies the process of interacting with the Polar API by providing a set of convenient methods and classes.
 
 ## Note
@@ -62,7 +69,7 @@ composer test
 
 The package is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Roadmap (In Order)
+## Roadmap
 
 - [ ] Support all GET requests
 - [ ] Support all POST requests
@@ -70,4 +77,5 @@ The package is open-source software licensed under the [MIT license](https://ope
 - [ ] Support all DELETE requests
 - [ ] Add more exception handling
 - [ ] Add more examples
-- [ ] Add more tests
+- [ ] 100% test coverage
+- [ ] 100% type coverage
