@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace HDInnovations\LaravelPolarApi\Clients;
 
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
+
 class ArticleClient extends BaseClient
 {
     /**
      * Get articles from the Polar API.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function getArticles(
         ?string $organizationId = null,
@@ -37,8 +40,8 @@ class ArticleClient extends BaseClient
     /**
      * Get an article by its ID from the Polar API.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function getArticleById(string $articleId): array
     {
@@ -48,8 +51,8 @@ class ArticleClient extends BaseClient
     /**
      * Get the number of potential receivers for an article.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function getArticleReceiversCount(string $articleId): array
     {

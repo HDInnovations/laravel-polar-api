@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace HDInnovations\LaravelPolarApi\Clients;
 
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
+
 class SubscriptionClient extends BaseClient
 {
     /**
      * Get subscriptions from the Polar API.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function getSubscriptions(
         ?string $organizationId = null,

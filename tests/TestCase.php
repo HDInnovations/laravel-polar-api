@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HDInnovations\LaravelPolarApi\Tests;
 
 use HDInnovations\LaravelPolarApi\Providers\PolarApiServiceProvider;
@@ -19,7 +21,7 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
     }

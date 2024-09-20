@@ -46,8 +46,8 @@ class ProductClient extends BaseClient
     /**
      * Get a product by its ID from the Polar API.
      *
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
      */
     final public function getProductById(string $productId): array
     {
