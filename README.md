@@ -77,5 +77,5 @@ The package is open-source software licensed under the [MIT license](https://ope
 - [ ] Support all DELETE requests
 - [ ] Add more exception handling
 - [ ] Add more examples
-- [ ] 100% test coverage
-- [ ] 100% type coverage
+- [x] 100% test coverage
+- [x] 100% type coverage
