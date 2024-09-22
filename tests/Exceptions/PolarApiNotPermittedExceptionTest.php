@@ -2,25 +2,19 @@
 
 declare(strict_types=1);
 
-use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
-use Illuminate\Support\Facades\Http;
 
-it('throws PolarApiNotPermittedException on 403 status', function (): void {
-    Http::fake([
-        '*' => Http::response([
-            'type'   => 'NotPermitted',
-            'detail' => 'string',
-        ], 403),
-    ]);
+it('parses and returns the 403 response correctly', function (): void {
+    $response = [
+        'type'   => 'NotPermitted',
+        'detail' => 'string',
+    ];
 
-    $client = new ArticleClient('https://api.example.com', 'your-token');
+    $exception = new PolarApiNotPermittedException($response);
 
-    try {
-        $client->deleteArticle('1');
-    } catch (PolarApiNotPermittedException $e) {
-        expect($e->getMessage())->toBe('Not Permitted')
-            ->and($e->getType())->toBe('NotPermitted')
-            ->and($e->getDetail())->toBe('string');
-    }
+    expect($exception->getType())->toBe('NotPermitted')
+        ->and($exception->getDetail())->toBe('string')
+        ->and($exception->getMessage())->toBe('Not Permitted')
+        ->and($exception->getCode())->toBe(403)
+        ->and($exception->toArray())->toBe($response);
 });
