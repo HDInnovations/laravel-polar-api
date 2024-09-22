@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use Illuminate\Support\Facades\Http;
 
@@ -128,4 +129,72 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting artic
     $this->expectExceptionMessage('Unprocessable Entity');
 
     $client->getArticleReceiversCount('1');
+});
+
+it('posts an article successfully', function (): void {
+    Http::fake([
+        '*' => Http::response(['data' => 'article'], 201),
+    ]);
+
+    $client = new ArticleClient('*', 'string');
+
+    $response = $client->postArticle(
+        'Test Title',
+        'Test Body',
+        'org-123',
+        'public',
+        false,
+        false,
+        false
+    );
+
+    expect($response)->toBe(['data' => 'article']);
+});
+
+it('updates an article successfully', function (): void {
+    Http::fake([
+        '*' => Http::response(['data' => 'updated article'], 200),
+    ]);
+
+    $client = new ArticleClient('*', 'string');
+
+    $response = $client->updateArticle(
+        '1',
+        'Updated Title',
+        'Updated Body',
+        'private',
+        true,
+        true,
+        true
+    );
+
+    expect($response)->toBe(['data' => 'updated article']);
+});
+
+it('deletes an article successfully', function (): void {
+    Http::fake([
+        '*' => Http::response(['data' => 'deleted article'], 200),
+    ]);
+
+    $client = new ArticleClient('*', 'string');
+
+    $response = $client->deleteArticle('1');
+
+    expect($response)->toBe(['data' => 'deleted article']);
+});
+
+it('throws PolarApiNotPermittedException on 403 status when deleting article', function (): void {
+    Http::fake([
+        '*' => Http::response([
+            'type'   => 'NotPermitted',
+            'detail' => 'string',
+        ], 403),
+    ]);
+
+    $client = new ArticleClient('*', 'string');
+
+    $this->expectException(PolarApiNotPermittedException::class);
+    $this->expectExceptionMessage('Not Permitted');
+
+    $client->deleteArticle('1');
 });

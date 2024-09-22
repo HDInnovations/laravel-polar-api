@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace HDInnovations\LaravelPolarApi\Clients;
 
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
+use JsonException;
 
 class ArticleClient extends BaseClient
 {
@@ -14,6 +16,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws JsonException
      */
     final public function getArticles(
         ?string $organizationId = null,
@@ -42,6 +45,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws JsonException
      */
     final public function getArticleById(string $articleId): array
     {
@@ -53,6 +57,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws JsonException
      */
     final public function getArticleReceiversCount(string $articleId): array
     {
@@ -63,5 +68,75 @@ class ArticleClient extends BaseClient
             'premium_subscribers'  => $response['premium_subscribers'] ?? 0,
             'organization_members' => $response['organization_members'] ?? 0,
         ];
+    }
+
+    /**
+     * Post an article to the Polar API.
+     *
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
+     * @throws JsonException
+     */
+    final public function postArticle(
+        string $title,
+        string $body,
+        string $organizationId,
+        string $visibility = 'public',
+        bool $paidSubscribersOnly = false,
+        bool $notifySubscribers = false,
+        bool $isPinned = false
+    ): array {
+        $data = [
+            'title'                 => $title,
+            'body'                  => $body,
+            'organization_id'       => $organizationId,
+            'visibility'            => $visibility,
+            'paid_subscribers_only' => $paidSubscribersOnly,
+            'notify_subscribers'    => $notifySubscribers,
+            'is_pinned'             => $isPinned,
+        ];
+
+        return $this->request('post', '/articles', $data);
+    }
+
+    /**
+     * Update an article in the Polar API.
+     *
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
+     * @throws JsonException
+     */
+    final public function updateArticle(
+        string $articleId,
+        ?string $title,
+        ?string $body,
+        ?string $visibility,
+        ?bool $paidSubscribersOnly,
+        ?bool $notifySubscribers,
+        ?bool $isPinned
+    ): array {
+        $data = [
+            'title'                 => $title,
+            'body'                  => $body,
+            'visibility'            => $visibility,
+            'paid_subscribers_only' => $paidSubscribersOnly,
+            'notify_subscribers'    => $notifySubscribers,
+            'is_pinned'             => $isPinned,
+        ];
+
+        return $this->request('patch', "/articles/{$articleId}", $data);
+    }
+
+    /**
+     * Delete an article in the Polar API.
+     *
+     * @throws PolarApiUnprocessableEntityException
+     * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
+     * @throws JsonException
+     */
+    final public function deleteArticle(string $articleId): array
+    {
+        return $this->request('delete', "/articles/{$articleId}");
     }
 }

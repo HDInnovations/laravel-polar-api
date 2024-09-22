@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HDInnovations\LaravelPolarApi\Clients;
 
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use Illuminate\Support\Facades\Http;
 use JsonException;
@@ -18,6 +19,7 @@ class BaseClient
     /**
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function request(string $method, string $endpoint, array $params = []): array
@@ -29,6 +31,10 @@ class BaseClient
 
         if ($response->status() === 422) {
             throw new PolarApiUnprocessableEntityException($response->json('detail'));
+        }
+
+        if ($response->status() === 403) {
+            throw new PolarApiNotPermittedException($response->json());
         }
 
         if ($response->getStatusCode() === 404) {
