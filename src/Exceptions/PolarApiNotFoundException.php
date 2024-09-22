@@ -9,13 +9,12 @@ use Exception;
 class PolarApiNotFoundException extends Exception
 {
     protected string $type;
-
     protected string $detail;
 
-    public function __construct(string $detail, $message = 'Resource Not Found', $code = 404, ?Exception $previous = null)
+    public function __construct(array $response, string $message = 'Resource Not Found', int $code = 404, ?Exception $previous = null)
     {
-        $this->type = 'ResourceNotFound';
-        $this->detail = $detail;
+        $this->type = $response['type'] ?? 'ResourceNotFound';
+        $this->detail = $response['detail'] ?? '';
         parent::__construct($message, $code, $previous);
     }
 
