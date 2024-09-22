@@ -7,6 +7,7 @@ namespace HDInnovations\LaravelPolarApi\Clients;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiValidationException;
+use JsonException;
 
 class ProductClient extends BaseClient
 {
@@ -16,6 +17,7 @@ class ProductClient extends BaseClient
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
      * @throws PolarApiValidationException
+     * @throws JsonException
      */
     final public function getProducts(
         ?string $organizationId = null,
@@ -48,6 +50,7 @@ class ProductClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws JsonException
      */
     final public function getProductById(string $productId): array
     {
