@@ -13,7 +13,7 @@ it('gets articles successfully', function (): void {
         '*' => Http::response(['data' => 'articles'], 200),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $response = $client->getArticles();
 
@@ -33,7 +33,7 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting artic
         ], 422),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
@@ -46,9 +46,9 @@ it('gets article by ID successfully', function (): void {
         '*' => Http::response(['data' => 'article'], 200),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getArticleById('1');
+    $response = $client->getArticleById(articleId: '1');
 
     expect($response)->toBe(['data' => 'article']);
 });
@@ -66,12 +66,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting artic
         ], 422),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getArticleById('1');
+    $client->getArticleById(articleId: '1');
 });
 
 it('throws PolarApiNotFoundException on 404 status when getting article by ID', function (): void {
@@ -82,12 +82,12 @@ it('throws PolarApiNotFoundException on 404 status when getting article by ID', 
         ], 404),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiNotFoundException::class);
     $this->expectExceptionMessage('Resource Not Found');
 
-    $client->getArticleById('1');
+    $client->getArticleById(articleId: '1');
 });
 
 it('gets article receivers count successfully', function (): void {
@@ -99,9 +99,9 @@ it('gets article receivers count successfully', function (): void {
         ], 200),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getArticleReceiversCount('1');
+    $response = $client->getArticleReceiversCount(articleId: '1');
 
     expect($response)->toBe([
         'free_subscribers'     => 10,
@@ -123,12 +123,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting artic
         ], 422),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getArticleReceiversCount('1');
+    $client->getArticleReceiversCount(articleId: '1');
 });
 
 it('posts an article successfully', function (): void {
@@ -139,13 +139,9 @@ it('posts an article successfully', function (): void {
     $client = new ArticleClient('*', 'string');
 
     $response = $client->postArticle(
-        'Test Title',
-        'Test Body',
-        'org-123',
-        'public',
-        false,
-        false,
-        false
+        title: 'Test Title',
+        body: 'Test Body',
+        organizationId: 'org-id',
     );
 
     expect($response)->toBe(['data' => 'article']);
@@ -156,16 +152,16 @@ it('updates an article successfully', function (): void {
         '*' => Http::response(['data' => 'updated article'], 200),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $response = $client->updateArticle(
-        '1',
-        'Updated Title',
-        'Updated Body',
-        'private',
-        true,
-        true,
-        true
+        articleId: '1',
+        title: 'Updated Title',
+        body: 'Updated Body',
+        visibility: 'private',
+        paidSubscribersOnly: true,
+        notifySubscribers: true,
+        isPinned: true
     );
 
     expect($response)->toBe(['data' => 'updated article']);
@@ -176,9 +172,9 @@ it('deletes an article successfully', function (): void {
         '*' => Http::response(['data' => 'deleted article'], 200),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
-    $response = $client->deleteArticle('1');
+    $response = $client->deleteArticle(articleId: '1');
 
     expect($response)->toBe(['data' => 'deleted article']);
 });
@@ -191,10 +187,10 @@ it('throws PolarApiNotPermittedException on 403 status when deleting article', f
         ], 403),
     ]);
 
-    $client = new ArticleClient('*', 'string');
+    $client = new ArticleClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiNotPermittedException::class);
     $this->expectExceptionMessage('Not Permitted');
 
-    $client->deleteArticle('1');
+    $client->deleteArticle(articleId: '1');
 });

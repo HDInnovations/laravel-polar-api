@@ -20,12 +20,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status', function (): voi
         ], 422),
     ]);
 
-    $client = new BaseClient('*', 'string');
+    $client = new BaseClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->request('get', '/endpoint', []);
+    $client->request(method: 'get', endpoint: '/endpoint');
 });
 
 it('throws PolarApiNotFoundException on 404 status', function (): void {
@@ -36,12 +36,12 @@ it('throws PolarApiNotFoundException on 404 status', function (): void {
         ], 404),
     ]);
 
-    $client = new BaseClient('*', 'string');
+    $client = new BaseClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiNotFoundException::class);
     $this->expectExceptionMessage('Resource Not Found');
 
-    $client->request('get', '/endpoint', []);
+    $client->request(method: 'get', endpoint: '/endpoint');
 });
 
 it('returns response array on successful request', function (): void {
@@ -49,9 +49,9 @@ it('returns response array on successful request', function (): void {
         '*' => Http::response(['data' => 'value'], 200),
     ]);
 
-    $client = new BaseClient('*', 'string');
+    $client = new BaseClient(baseUrl: '*', token: 'string');
 
-    $response = $client->request('get', '/endpoint', []);
+    $response = $client->request(method: 'get', endpoint: '/endpoint');
 
     expect($response)->toBe(['data' => 'value']);
 });

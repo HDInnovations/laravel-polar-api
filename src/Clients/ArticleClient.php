@@ -16,6 +16,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getArticles(
@@ -37,7 +38,7 @@ class ArticleClient extends BaseClient
             'limit'           => $limit,
         ]);
 
-        return $this->request('get', '/articles', $params);
+        return $this->request(method: 'get', endpoint: '/articles', params: $params);
     }
 
     /**
@@ -45,11 +46,12 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getArticleById(string $articleId): array
     {
-        return $this->request('get', "/articles/{$articleId}");
+        return $this->request(method: 'get', endpoint: "/articles/{$articleId}");
     }
 
     /**
@@ -57,11 +59,12 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getArticleReceiversCount(string $articleId): array
     {
-        $response = $this->request('get', "/articles/{$articleId}/receivers");
+        $response = $this->request(method: 'get', endpoint: "/articles/{$articleId}/receivers");
 
         return [
             'free_subscribers'     => $response['free_subscribers'] ?? 0,
@@ -75,6 +78,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function postArticle(
@@ -96,7 +100,7 @@ class ArticleClient extends BaseClient
             'is_pinned'             => $isPinned,
         ];
 
-        return $this->request('post', '/articles', $data);
+        return $this->request(method: 'post', endpoint: '/articles', params: $data);
     }
 
     /**
@@ -104,6 +108,7 @@ class ArticleClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function updateArticle(
@@ -124,7 +129,7 @@ class ArticleClient extends BaseClient
             'is_pinned'             => $isPinned,
         ];
 
-        return $this->request('patch', "/articles/{$articleId}", $data);
+        return $this->request(method: 'patch', endpoint: "/articles/{$articleId}", params: $data);
     }
 
     /**
@@ -137,6 +142,6 @@ class ArticleClient extends BaseClient
      */
     final public function deleteArticle(string $articleId): array
     {
-        return $this->request('delete', "/articles/{$articleId}");
+        return $this->request(method: 'delete', endpoint: "/articles/{$articleId}");
     }
 }

@@ -13,20 +13,20 @@ it('gets organizations successfully', function (): void {
         '*' => Http::response(['data' => 'organizations'], 200),
     ]);
 
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getOrganizations('slug', true);
+    $response = $client->getOrganizations(slug: 'slug', isMember: true);
 
     expect($response)->toBe(['data' => 'organizations']);
 });
 
 it('throws PolarApiValidationException when both slug and isMember are null', function (): void {
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiValidationException::class);
     $this->expectExceptionMessage('Either slug or isMember must be provided.');
 
-    $client->getOrganizations(null, null);
+    $client->getOrganizations(slug: null, isMember: null);
 });
 
 it('throws PolarApiUnprocessableEntityException on 422 status when getting organizations', function (): void {
@@ -42,12 +42,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting organ
         ], 422),
     ]);
 
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getOrganizations('slug', true);
+    $client->getOrganizations(slug: 'slug', isMember: true);
 });
 
 it('gets an organization by its ID successfully', function (): void {
@@ -55,9 +55,9 @@ it('gets an organization by its ID successfully', function (): void {
         '*' => Http::response(['data' => 'organization'], 200),
     ]);
 
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getOrganizationById('org-id');
+    $response = $client->getOrganizationById(organizationId: 'org-id');
 
     expect($response)->toBe(['data' => 'organization']);
 });
@@ -75,12 +75,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting an or
         ], 422),
     ]);
 
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getOrganizationById('org-id');
+    $client->getOrganizationById(organizationId: 'org-id');
 });
 
 it('throws PolarApiNotFountException on 404 status when getting an organization by its ID', function (): void {
@@ -91,10 +91,10 @@ it('throws PolarApiNotFountException on 404 status when getting an organization 
         ], 404),
     ]);
 
-    $client = new OrganizationClient('*', 'string');
+    $client = new OrganizationClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiNotFoundException::class);
     $this->expectExceptionMessage('Resource Not Found');
 
-    $client->getOrganizationById('org-id');
+    $client->getOrganizationById(organizationId: 'org-id');
 });

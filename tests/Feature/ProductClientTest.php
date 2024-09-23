@@ -13,15 +13,15 @@ it('gets products successfully', function (): void {
         '*' => Http::response(['data' => 'products'], 200),
     ]);
 
-    $client = new ProductClient('*', 'string');
+    $client = new ProductClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getProducts('org-id');
+    $response = $client->getProducts(organizationId: 'org-id');
 
     expect($response)->toBe(['data' => 'products']);
 });
 
 it('throws PolarApiValidationException when organization_id is missing', function (): void {
-    $client = new ProductClient('*', 'string');
+    $client = new ProductClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiValidationException::class);
     $this->expectExceptionMessage('The organization_id parameter is required.');
@@ -42,12 +42,12 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting produ
         ], 422),
     ]);
 
-    $client = new ProductClient('*', 'string');
+    $client = new ProductClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getProducts('org-id');
+    $client->getProducts(organizationId: 'org-id');
 });
 
 it('throws PolarApiNotFoundException on 404 status when getting product by ID', function (): void {
@@ -58,12 +58,12 @@ it('throws PolarApiNotFoundException on 404 status when getting product by ID', 
         ], 404),
     ]);
 
-    $client = new ProductClient('*', 'string');
+    $client = new ProductClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiNotFoundException::class);
     $this->expectExceptionMessage('Resource Not Found');
 
-    $client->getProductById('1');
+    $client->getProductById(productId: '1');
 });
 
 it('gets product by ID successfully', function (): void {
@@ -71,9 +71,9 @@ it('gets product by ID successfully', function (): void {
         '*' => Http::response(['data' => 'product'], 200),
     ]);
 
-    $client = new ProductClient('*', 'string');
+    $client = new ProductClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getProductById('1');
+    $response = $client->getProductById(productId: '1');
 
     expect($response)->toBe(['data' => 'product']);
 });

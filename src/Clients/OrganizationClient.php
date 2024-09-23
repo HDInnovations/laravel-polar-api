@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HDInnovations\LaravelPolarApi\Clients;
 
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiValidationException;
 use JsonException;
@@ -16,9 +17,9 @@ class OrganizationClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
-     * @throws JsonException
      * @throws PolarApiValidationException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException
+     * @throws PolarApiNotPermittedException
+     * @throws JsonException
      */
     final public function getOrganizations(
         ?string $slug = null,
@@ -39,7 +40,7 @@ class OrganizationClient extends BaseClient
             'sorting'   => $sorting,
         ]);
 
-        return $this->request('get', '/organizations', $params);
+        return $this->request(method: 'get', endpoint: '/organizations', params: $params);
     }
 
     /**
@@ -47,11 +48,11 @@ class OrganizationClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
-     * @throws \HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException
      */
     final public function getOrganizationById(string $organizationId): array
     {
-        return $this->request('get', "/organizations/{$organizationId}");
+        return $this->request(method: 'get', endpoint: "/organizations/{$organizationId}");
     }
 }

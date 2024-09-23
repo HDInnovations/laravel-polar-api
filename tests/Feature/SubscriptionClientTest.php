@@ -11,9 +11,9 @@ it('gets subscriptions successfully', function (): void {
         '*' => Http::response(['data' => 'subscriptions'], 200),
     ]);
 
-    $client = new SubscriptionClient('*', 'string');
+    $client = new SubscriptionClient(baseUrl: '*', token: 'string');
 
-    $response = $client->getSubscriptions('org-id');
+    $response = $client->getSubscriptions(organizationId: 'org-id');
 
     expect($response)->toBe(['data' => 'subscriptions']);
 });
@@ -31,10 +31,10 @@ it('throws PolarApiUnprocessableEntityException on 422 status when getting subsc
         ], 422),
     ]);
 
-    $client = new SubscriptionClient('*', 'string');
+    $client = new SubscriptionClient(baseUrl: '*', token: 'string');
 
     $this->expectException(PolarApiUnprocessableEntityException::class);
     $this->expectExceptionMessage('Unprocessable Entity');
 
-    $client->getSubscriptions('org-id');
+    $client->getSubscriptions(organizationId: 'org-id');
 });

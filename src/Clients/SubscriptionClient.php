@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HDInnovations\LaravelPolarApi\Clients;
 
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use JsonException;
 
@@ -15,6 +16,7 @@ class SubscriptionClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getSubscriptions(
@@ -34,6 +36,6 @@ class SubscriptionClient extends BaseClient
             'limit'           => $limit,
         ]);
 
-        return $this->request('get', '/subscriptions', $params);
+        return $this->request(method: 'get', endpoint: '/subscriptions', params: $params);
     }
 }

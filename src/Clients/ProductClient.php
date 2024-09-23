@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HDInnovations\LaravelPolarApi\Clients;
 
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException;
+use HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotPermittedException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException;
 use HDInnovations\LaravelPolarApi\Exceptions\PolarApiValidationException;
 use JsonException;
@@ -17,6 +18,7 @@ class ProductClient extends BaseClient
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
      * @throws PolarApiValidationException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getProducts(
@@ -42,7 +44,7 @@ class ProductClient extends BaseClient
             'limit'           => $limit,
         ]);
 
-        return $this->request('get', '/products', $params);
+        return $this->request(method: 'get', endpoint: '/products', params: $params);
     }
 
     /**
@@ -50,10 +52,11 @@ class ProductClient extends BaseClient
      *
      * @throws PolarApiUnprocessableEntityException
      * @throws PolarApiNotFoundException
+     * @throws PolarApiNotPermittedException
      * @throws JsonException
      */
     final public function getProductById(string $productId): array
     {
-        return $this->request('get', "/products/{$productId}");
+        return $this->request(method: 'get', endpoint: "/products/{$productId}");
     }
 }
