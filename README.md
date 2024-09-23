@@ -42,11 +42,30 @@ The configuration file contains the following options:
 https://docs.polar.sh/api/v1/articles/get
 
 ```php
+// Import the ArticleClient
 use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
 
-$articleClient = new ArticleClient(config('polar-api.base_url'), config('polar-api.token'));
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
 
+// Get articles
 $articles = $articleClient->getArticles();
+```
+
+https://docs.polar.sh/api/v1/products/get
+
+```php
+// Import the ProductClient
+use HDInnovations\LaravelPolarApi\Clients\ProductClient;
+
+// Initialize the client
+$productClient = new ProductClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Get products
+$products = $productClient->getProducts(organizationId: 'org123', page: 1, limit: 10);
+
+// Get product by ID
+$product = $productClient->getProductById(productId: 'prod123');
 ```
 
 ## Exceptions
@@ -56,6 +75,7 @@ The package throws the following exceptions:
 - `HDInnovations\LaravelPolarApi\Exceptions\PolarApiNotFoundException`: Thrown when the requested resource is not found.
 - `HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnprocessableEntityException`: Thrown when the request is invalid.
 - `HDInnovations\LaravelPolarApi\Exceptions\PolarApiValidationException`: Thrown when the request validation fails.
+- `HDInnovations\LaravelPolarApi\Exceptions\PolarApiUnauthorizedException`: Thrown when the request is unauthorized.
 
 ## Testing
 
@@ -63,6 +83,30 @@ To run the tests, use the following command:
 
 ```sh
 composer test
+```
+
+## Test Coverage
+
+To generate the test coverage, use the following command:
+
+```sh
+composer test-coverage
+```
+
+## Static Analysis
+
+To run static analysis, use the following command:
+
+```sh
+composer analyze
+```
+
+## Type Coverage
+
+To check the type coverage, use the following command:
+
+```sh
+composer test-type-coverage
 ```
 
 ## License
@@ -75,7 +119,7 @@ The package is open-source software licensed under the [MIT license](https://ope
 - [ ] Support all POST requests
 - [ ] Support all PUT requests
 - [ ] Support all DELETE requests
-- [ ] Add more exception handling
-- [ ] Add more examples
+- [x] Add more exception handling
+- [x] Add more examples
 - [x] 100% test coverage
 - [x] 100% type coverage
