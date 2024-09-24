@@ -37,36 +37,9 @@ The configuration file contains the following options:
 
 #### You can also set the `POLAR_API_BASE_URL` and `POLAR_API_TOKEN` environment variables in your `.env` file which is recommended.
 
-## Usage Example
+## Usage Documentation
 
-https://docs.polar.sh/api/v1/articles/get
-
-```php
-// Import the ArticleClient
-use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
-
-// Initialize the client
-$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
-
-// Get articles
-$articles = $articleClient->getArticles();
-```
-
-https://docs.polar.sh/api/v1/products/get
-
-```php
-// Import the ProductClient
-use HDInnovations\LaravelPolarApi\Clients\ProductClient;
-
-// Initialize the client
-$productClient = new ProductClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
-
-// Get products
-$products = $productClient->getProducts(organizationId: 'org123', page: 1, limit: 10);
-
-// Get product by ID
-$product = $productClient->getProductById(productId: 'prod123');
-```
+Please refer to our [documentation](https://hdinnovations.github.io/laravel-polar-api/) for detailed information on how to use this package and the endpoints + parameters it supports.
 
 ## Exceptions
 
