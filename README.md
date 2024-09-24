@@ -18,7 +18,7 @@ This package is still under development and should not be used in production env
 To install the package, you can use Composer:
 
 ```sh
-composer require hdinnovations/laravel-polar-api:dev-master
+composer require hdinnovations/laravel-polar-api:v1.0.0-beta
 ```
 
 ## Configuration
