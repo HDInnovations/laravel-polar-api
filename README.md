@@ -9,16 +9,12 @@
 
 **Laravel Polar API** is a Laravel package that provides an API wrapper for [polar.sh](Ihttps://polar.sh) API. This package simplifies the process of interacting with the Polar API by providing a set of convenient methods and classes.
 
-## Note
-
-This package is still under development and should not be used in production environments.
-
 ## Installation
 
 To install the package, you can use Composer:
 
 ```sh
-composer require hdinnovations/laravel-polar-api:v1.0.0-beta
+composer require hdinnovations/laravel-polar-api
 ```
 
 ## Configuration

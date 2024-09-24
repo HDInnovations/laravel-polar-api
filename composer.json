@@ -8,7 +8,7 @@
     "homepage": "https://github.com/hdinnovations/laravel-polar-api",
     "license": "MIT",
     "type": "library",
-    "version": "v1.0.0-beta",
+    "version": "v1.0.0",
     "authors": [
         {
             "name": "HDVinnie",
