@@ -8,6 +8,9 @@
     - [postArticle](#postarticle)
     - [updateArticle](#updatearticle)
     - [deleteArticle](#deletearticle)
+- [CheckoutClient](#checkoutclient)
+    - [createCheckout](#createcheckout)
+    - [getCheckoutById](#getcheckoutbyid)
 - [ProductClient](#productclient)
     - [getProducts](#getproducts)
     - [getProductById](#getproductbyid)
@@ -126,6 +129,38 @@ Deletes an article.
 | Name      | Type   | Description          | Required |
 |-----------|--------|----------------------|----------|
 | articleId | string | The ID of the article | Yes      |
+
+## CheckoutClient
+
+### createCheckout
+
+Creates a new checkout session.
+
+**Endpoint:** `/checkouts/`
+
+**Method:** `POST`
+
+**Parameters:**
+
+| Name            | Type   | Description                    | Required |
+|-----------------|--------|--------------------------------|----------|
+| product_price_id | string | The ID of the product price    | Yes      |
+| success_url     | string | The URL to redirect on success | Yes      |
+| customer_email  | string | The email of the customer      | Yes      |
+
+### getCheckoutById
+
+Fetches a checkout session by its ID.
+
+**Endpoint:** `/checkouts/{checkoutId}`
+
+**Method:** `GET`
+
+**Parameters:**
+
+| Name        | Type   | Description                | Required |
+|-------------|--------|----------------------------|----------|
+| checkoutId  | string | The ID of the checkout     | Yes      |
 
 ## ProductClient
 
