@@ -27,6 +27,7 @@ class BaseClient
         $response = Http::withHeaders([
             'Accept'        => 'application/json',
             'Authorization' => 'Bearer '.$this->token,
+            'User-Agent'    => 'Laravel Polar API Package by HDInnovations', // For internal metrics
         ])->$method($this->baseUrl.$endpoint, $params);
 
         if ($response->status() === 422) {
