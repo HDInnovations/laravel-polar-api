@@ -48,6 +48,19 @@ Fetches a list of articles.
 | page            | int     | The page number for pagination | No       |
 | limit           | int     | The number of items per page   | No       |
 
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Get articles
+$articles = $articleClient->getArticles();
+```
+
 ### getArticleById
 
 Fetches an article by its ID.
@@ -62,6 +75,19 @@ Fetches an article by its ID.
 |-----------|--------|----------------------|----------|
 | articleId | string | The ID of the article | Yes      |
 
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Get article by ID
+$article = $articleClient->getArticleById(articleId: 'article-id');
+```
+
 ### getArticleReceiversCount
 
 Fetches the number of potential receivers for an article.
@@ -75,6 +101,19 @@ Fetches the number of potential receivers for an article.
 | Name      | Type   | Description          | Required |
 |-----------|--------|----------------------|----------|
 | articleId | string | The ID of the article | Yes      |
+
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Get article receivers count
+$receiversCount = $articleClient->getArticleReceiversCount(articleId: 'article-id');
+```
 
 ### postArticle
 
@@ -96,6 +135,19 @@ Posts a new article.
 | notifySubscribers   | bool   | Notify subscribers             | No       |
 | isPinned            | bool   | Is the article pinned          | No       |
 
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Post article
+$article = $articleClient->postArticle(title: 'Article Title', body: 'Article Body', organizationId: 'organization-id');
+```
+
 ### updateArticle
 
 Updates an existing article.
@@ -116,6 +168,19 @@ Updates an existing article.
 | notifySubscribers   | bool   | Notify subscribers             | No       |
 | isPinned            | bool   | Is the article pinned          | No       |
 
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Update article
+$article = $articleClient->updateArticle(articleId: 'article-id', title: 'Article Title', body: 'Article Body');
+```
+
 ### deleteArticle
 
 Deletes an article.
@@ -129,6 +194,19 @@ Deletes an article.
 | Name      | Type   | Description          | Required |
 |-----------|--------|----------------------|----------|
 | articleId | string | The ID of the article | Yes      |
+
+**Example:**
+
+```php
+// Import the ArticleClient
+use HDInnovations\LaravelPolarApi\Clients\ArticleClient;
+
+// Initialize the client
+$articleClient = new ArticleClient(baseUrl: config('polar-api.base_url'), token: config('polar-api.token'));
+
+// Delete article
+$articleClient->deleteArticle(articleId: 'article-id');
+```
 
 ## CheckoutClient
 
